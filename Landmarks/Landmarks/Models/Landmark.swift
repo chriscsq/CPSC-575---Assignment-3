@@ -9,6 +9,8 @@ import SwiftUI
 import CoreLocation
 
 struct Landmark: Hashable, Codable, Identifiable {
+    
+    
     var id: Int
     var name: String
     fileprivate var imageName: String
@@ -30,6 +32,8 @@ struct Landmark: Hashable, Codable, Identifiable {
         case rivers = "Rivers"
         case mountains = "Mountains"
     }
+    
+
 }
 
 extension Landmark {

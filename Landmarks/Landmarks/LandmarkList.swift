@@ -9,27 +9,34 @@ import SwiftUI
 
 struct LandmarkList: View {
     @EnvironmentObject private var userData: UserData
+    @State private var searchTerm: String = ""
     
     var body: some View {
         NavigationView {
             List {
+                
+                
+                SearchBar(text: $searchTerm)
+                
                 Toggle(isOn: $userData.showFavoritesOnly) {
                     Text("Show Favorites Only")
                 }
                 
-                ForEach(userData.landmarks) { landmark in
+                /* Cite - https://stackoverflow.com/questions/56490963/how-to-display-a-search-bar-with-swiftui */
+                ForEach(self.searchTerm.isEmpty ? userData.landmarks : userData.landmarks.filter {
+                    return $0.name.localizedCaseInsensitiveContains(self.searchTerm)
+                } ) { landmark in
                     if !self.userData.showFavoritesOnly || landmark.isFavorite {
-                        NavigationLink(
-                            destination: LandmarkDetail(landmark: landmark)
-                                .environmentObject(self.userData)
-                        ) {
-                            LandmarkRow(landmark: landmark)
-                        }
+                       NavigationLink(
+                           destination: LandmarkDetail(landmark: landmark)
+                               .environmentObject(self.userData)
+                       ) {
+                           LandmarkRow(landmark: landmark)
+                       }
                     }
                 }
-            }
+         }
             .navigationBarTitle(Text("Landmarks"))
-        }
     }
 }
 
@@ -42,4 +49,5 @@ struct LandmarksList_Previews: PreviewProvider {
         }
         .environmentObject(UserData())
     }
+}
 }
