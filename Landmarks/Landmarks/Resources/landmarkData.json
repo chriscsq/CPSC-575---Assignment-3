@@ -178,5 +178,20 @@
             "latitude": 44.747408
         },
         "imageName": "umbagog"
+    },
+    {
+        "name": "Moraine Lake",
+        "category": "Lakes",
+        "city": "Banff",
+        "state": "Alberta",
+        "id": 1013,
+        "isFeatured": true,
+        "isFavorite": true,
+        "park": "Banff National Park",
+        "coordinates": {
+            "longitude": -116.1860,
+            "latitude": 51.3217
+        },
+        "imageName": "morainelake"
     }
 ]
